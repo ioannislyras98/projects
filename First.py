@@ -6,7 +6,7 @@ import keyboard  # Step 1: Import the keyboard library
 def jiggle_mouse():
     running = True  # Step 2: Initialize a flag to control the loop
     while running:
-        if keyboard.is_pressed('esc'):  # Step 3: Check if the escape key is pressed
+        if keyboard.is_pressed('esc'):  # Step 3: Check if the escape key is pressed cm,kl.j.,.,.,.,.,.,.,.
             running = False  # Change the flag to stop the loop
             break  # Immediately exit the loop
         x = random.randint(600, 700)
