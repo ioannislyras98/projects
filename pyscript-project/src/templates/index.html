@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Form</h1>
+        <form id="myForm">
+            <label for="FullName">Full Name:</label>
+            <input type="text" id="FullName" name="FullName">
+            <label for="Address">Address:</label>
+            <input type="text" id="Address" name="Address">
+            <label for="Phone">Phone:</label>
+            <input type="text" id="Phone" name="Phone">
+            <label for="Email">Email:</label>
+            <input type="text" id="Email" name="Email">
+            <label for="Website">Website:</label>
+            <input type="text" id="Website" name="Website">
+            <label for="field6">Test 2:</label>
+            <input type="text" id="field6" name="field6">
+            <input type="file" id="htmlFile" accept=".html">
+            <button type="button" id="create_button">Create</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('create_button').addEventListener('click', function() {
+            fetch('/create-docx')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = 'Stylish_teaching_resume.docx';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

@@ -2,7 +2,6 @@ import pyautogui as pag
 import time
 import random
 import keyboard  # Step 1: Import the keyboard library
-
 def jiggle_mouse():
     running = True  # Step 2: Initialize a flag to control the loop
     while running:
@@ -15,4 +14,4 @@ def jiggle_mouse():
         time.sleep(1)
 
 if __name__ == "__main__":
-    jiggle_mouse()  
+    jiggle_mouse()
